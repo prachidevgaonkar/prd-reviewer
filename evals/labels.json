@@ -1,0 +1,29 @@
+{
+  "_note": "Answer key. Each planted blocker counts as caught if any of its keywords appears in the review's blockers (title, why or fix).",
+  "r1-invoice-export":       {"expected": "Ready", "blockers": {}},
+  "r2-dark-mode":            {"expected": "Ready", "blockers": {}},
+  "r3-approval-slack":       {"expected": "Ready", "blockers": {}},
+  "r4-saved-searches":       {"expected": "Ready", "blockers": {}},
+  "n1-bulk-import":          {"expected": "Needs work", "blockers": {
+      "metrics lack baseline/target": ["baseline"],
+      "no staged rollout or rollback": ["rollback", "roll back", "ramp", "staged", "phased", "feature flag"]}},
+  "n2-onboarding-checklist": {"expected": "Needs work", "blockers": {
+      "no non-goals": ["non-goal", "non goal", "out of scope", "out-of-scope"],
+      "requirements not testable": ["testable", "acceptance", "vague", "untestable", "not specific"]}},
+  "n3-meeting-summaries":    {"expected": "Needs work", "blockers": {
+      "no privacy/legal review": ["privacy", "legal", "consent", "gdpr", "security", "retention"],
+      "open questions lack owners": ["owner"]}},
+  "n4-billing-alerts":       {"expected": "Needs work", "blockers": {
+      "no edge cases / error states": ["edge case", "error state", "failure", "fails", "empty state"],
+      "no rollout plan": ["rollout", "roll out", "launch plan", "rollback"]}},
+  "x1-team-spaces":          {"expected": "Not ready", "blockers": {
+      "no success metrics": ["metric"]}},
+  "x2-health-score":         {"expected": "Not ready", "blockers": {
+      "no requirements": ["requirement"],
+      "problem lacks evidence": ["evidence", "data", "anecdot"],
+      "metrics unmeasurable": ["measurable", "baseline", "unmeasurable"]}},
+  "x3-template-marketplace": {"expected": "Not ready", "blockers": {
+      "early idea, not a PRD": ["early", "idea", "not a prd", "concept", "exploration", "discovery"]}},
+  "x4-offline-mode":         {"expected": "Not ready", "blockers": {
+      "no requirements": ["requirement"]}}
+}
