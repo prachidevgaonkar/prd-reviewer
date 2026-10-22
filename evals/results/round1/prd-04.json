@@ -1,0 +1,27 @@
+{"verdict": "Needs work",
+ "blockers": [
+  {"title": "Success metrics lack baselines, a timeframe and a guardrail",
+   "why": "\"Increase seat activation within the first week to 60%\" has no current baseline and \"Reduce implementation hours per enterprise account\" has no baseline, target or timeframe, so success can't be judged.",
+   "fix": "Add the current first-week activation rate and current implementation hours per enterprise account, a target and timeframe for each (e.g. within 60 days of GA), plus a guardrail such as invite bounce rate or import-related support tickets."},
+  {"title": "Rollout has no ramp, flag or rollback plan",
+   "why": "\"Launch to all accounts at once in the November release\" means a bad import (wrong roles, mass mis-sent invites to 5,000 people) hits every customer with no way to stop it.",
+   "fix": "Define a sequence (internal, implementation-team-assisted accounts, percentage ramp, GA), a feature flag, a rollback trigger with an owner monitoring it, and enablement for the implementation team."},
+  {"title": "Email rate-limit risk has no mitigation, yet R3 depends on it",
+   "why": "R3 promises \"Invitations sent within 10 minutes for 5,000 rows\" while the only listed risk, \"Email provider rate limits for 5,000 invites\", has no mitigation or fallback, so the P0 acceptance criterion may be unachievable.",
+   "fix": "Have Mei confirm provider limits before eng starts and state the fallback (queued/throttled sending with progress status, or a revised SLA) in R3."}
+ ],
+ "improvements": [
+  "Users: say whether only org admins or also team admins can import, and add a permissions requirement for who can assign which roles.",
+  "Requirements: specify behavior for files over 5,000 rows, wrong/missing headers, non-CSV or malformed encodings, and an empty file.",
+  "Requirements: state what happens if the import fails partway (are already-sent invites kept, can the admin retry safely).",
+  "Requirements: R1 \"progress shown\" is vague; define what progress is displayed and when.",
+  "Requirements: note privacy handling of the uploaded CSV (retention, who can download the error report) and accessibility of the preview table.",
+  "Edge cases: define how duplicate emails differing only in case are handled and which row wins when duplicates have different roles/teams.",
+  "Scope: clarify whether unknown teams are created or flagged, and add a timeline section."
+ ],
+ "questions": [
+  "What is today's first-week seat activation rate, and what are current implementation hours per enterprise account?",
+  "Is 60% first-week activation the target for all accounts or only those with 100+ seats, and by when?",
+  "Can admins choose to stage imports without sending invitations immediately, or is sending on import intended?",
+  "Who owns monitoring after launch, and what signal would make you pull the feature back?"
+ ]}

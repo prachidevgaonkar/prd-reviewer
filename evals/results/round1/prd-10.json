@@ -1,0 +1,20 @@
+{"verdict": "Needs work",
+ "blockers": [
+  {"title": "Requirements are not testable", "why": "Lines like \"The checklist should make onboarding easier and more engaging\" and \"Handle different types of users appropriately\" use vague verbs with no acceptance criteria or priorities, so engineering can't build or QA can't verify anything.", "fix": "Rewrite as an ID/Requirement/Priority/Acceptance criteria table (e.g. each step, completion detection, dismiss behavior) and add edge cases, empty states and permissions."},
+  {"title": "Checklist content is undecided", "why": "The open question \"Which steps go on the checklist?\" (Rae, Nov 4) is the core of the feature; until it is answered engineering doesn't know what to build or which analytics events Tom needs.", "fix": "Resolve the step list before handoff and put it in Requirements, mapping each step to its completion event."},
+  {"title": "Scope has no boundaries or non-goals", "why": "\"A checklist for new workspace owners that helps them get started\" doesn't separate v1 from later phases or rule anything out, which invites scope creep (e.g. invited members, tours, emails).", "fix": "List v1 in-scope items, explicit non-goals (e.g. checklist for invited non-owners, product tours, onboarding emails), and later-phase items."}
+ ],
+ "improvements": [
+  "Success metrics: add a guardrail metric that must not get worse (e.g. week-1 retention or support tickets), and clarify that trial-to-paid is secondary.",
+  "Requirements: replace \"Should feel delightful and on-brand\" with concrete behavior or a design link plus stated behavior; specify which analytics events \"Integrate with analytics\" means.",
+  "Requirements: add non-functional needs such as accessibility and localization.",
+  "Users: clarify what happens on day 15 or for owners of a second workspace (\"first 14 days\").",
+  "Rollout: define the rollback trigger threshold (\"if trial conversion drops\" by how much, measured when), add a monitoring owner, and note support/docs enablement.",
+  "Add a timeline with milestones."
+ ],
+ "questions": [
+  "Which steps will be on the checklist, and how is each step's completion detected?",
+  "Can users dismiss or hide the checklist, and does it reappear?",
+  "What does \"different types of users\" mean: which segments get different checklists?",
+  "Is a four-week A/B test long enough to read a 90-day trial-to-paid target, or will GA be decided on the primary metric only?"
+ ]}

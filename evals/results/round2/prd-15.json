@@ -1,0 +1,24 @@
+{"verdict": "Needs work",
+ "blockers": [
+  {"title": "No privacy or legal review for employee location data",
+   "why": "The app \"records GPS location and time\" for reps and stores \"Check-in history ... for 3 years\", yet no privacy, legal, consent or employee-monitoring review is listed, which could force changes to what is built or where it can launch.",
+   "fix": "Add a legal/privacy review item with an owner and date, and requirements for rep consent/disclosure, OS permission prompts, data access controls and a justified retention period."},
+  {"title": "Offline check-in behavior is undefined",
+   "why": "\"Offline check-ins\" is an open question, but field reps often lack connectivity and the answer (queue-and-sync vs. block) changes the mobile architecture and verification logic for R1/R2.",
+   "fix": "Resolve the question with Leo before eng starts and add a requirement with acceptance criteria for offline capture, sync timing and how delayed check-ins are verified."},
+  {"title": "Rollout has no ramp or rollback trigger",
+   "why": "\"Two design-partner customers, then all field-sales accounts\" jumps straight to everyone, and the rollback plan has no condition for when to use it.",
+   "fix": "Add an internal stage and percentage ramp, define rollback triggers (e.g., battery complaints or verification error rates above a threshold), and name a monitoring owner."}
+ ],
+ "improvements": [
+  "Success metrics: the guardrail \"Stays under 6 per month\" allows battery complaints to double from 3; consider a tighter threshold.",
+  "Requirements: cover location permission denied, GPS spoofing/mock locations, and customers with multiple sites or no address.",
+  "Requirements: define manager permissions (only their own team's check-ins) and what reps can see or edit about their own check-ins.",
+  "Risks: add a mitigation or fallback for geocoding API cost, not just an owner and date.",
+  "Rollout: account for support docs and enablement for reps and managers, since both will notice the change."
+ ],
+ "questions": [
+  "Has legal or privacy reviewed GPS capture and 3-year retention, and in which regions will this launch?",
+  "What should happen when a rep checks in without connectivity?",
+  "Why is 3-year retention needed, and who can access historical check-ins?"
+ ]}

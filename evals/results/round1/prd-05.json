@@ -1,0 +1,16 @@
+{"verdict": "Ready",
+ "blockers": [],
+ "improvements": [
+  "Success metrics: consider a second guardrail such as search error rate or support tickets tagged \"search\" so a regression other than latency is caught.",
+  "Requirements: R1 \"Saved search reloads identical results\" should say whether results are identical at query time (re-run live) or snapshot; clarify for time-relative filters like \"last 7 days\".",
+  "Requirements: state behavior when the user loses access to the analytics plan or to data a saved search references (permissions).",
+  "Requirements: add accessibility expectations for the dropdown (keyboard navigation, screen reader labels) and whether names are trimmed/case-insensitive for the duplicate-name check.",
+  "Requirements: define the empty state of the dropdown before any search is saved.",
+  "Rollout: add a rollback trigger on error rate in addition to \"search p95 exceeds 800 ms for 30 minutes\", and name who monitors after launch.",
+  "Add a timeline section."
+ ],
+ "questions": [
+  "What is the decision on \"Migrate filters stored in the old bookmarks feature?\" (due Oct 25), and if yes, does migration move into v1 scope?",
+  "Are saved searches stored per user per account, and what happens to them when a user is removed or changes accounts?",
+  "Is the 50-search limit based on data or a placeholder, and should it be configurable?"
+ ]}

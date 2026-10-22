@@ -1,0 +1,24 @@
+{"verdict": "Needs work",
+ "blockers": [
+  {"title": "R3 shareable link contradicts the privacy promise and non-goals",
+   "why": "R3 says \"Link opens the note for anyone in the workspace\" while Scope says notes are \"visible only to their author\" and non-goals exclude \"Sharing private notes with other users in any form\", so engineering cannot know which to build.",
+   "fix": "Decide whether sharing is in v1; either remove R3 (or move it to a later phase) or rewrite the scope, non-goals and R1 acceptance criteria to allow it."},
+  {"title": "R4 manager transfer breaks author-only visibility",
+   "why": "\"When a user is deactivated, their private notes transfer to their manager\" exposes notes that authors were told only they could see, which is both a product contradiction and a trust/privacy risk.",
+   "fix": "Define the deactivation behavior explicitly (transfer, archive, or delete), tell authors about it in-product, and reconcile it with the scope statement."},
+  {"title": "Privacy and access rules for private notes are not fully defined",
+   "why": "Only exports are raised with Legal; admin access, legal holds, audit logs and API access to \"private\" notes are not addressed, so the permission model Jo is building has no clear spec.",
+   "fix": "Add requirements stating exactly who (admins, support, API, exports) can or cannot access private notes, and get a privacy/security review scheduled with an owner and date."}
+ ],
+ "improvements": [
+  "Users: expand beyond \"Account managers and customer success managers\" to say whether other roles can create private notes.",
+  "Requirements: add error states (save failures, hitting the 10,000-character limit) and a performance requirement tied to the 1.3 s p95 guardrail.",
+  "Success metrics: the survey target depends on \"Next quarterly survey\"; give a date so the outcome can be judged.",
+  "Rollout: add a rollback trigger (e.g., p95 load time above 1.3 s) and a monitoring owner; note support/docs enablement.",
+  "Edge cases: specify what happens to private notes when a record is merged or reassigned."
+ ],
+ "questions": [
+  "Is sharing a private note with a colleague actually wanted in v1, given the non-goal against sharing in any form?",
+  "Should a deactivated user's private notes go to their manager, and will authors be told this up front?",
+  "Can workspace admins or support staff ever view private notes, e.g., for legal or compliance requests?"
+ ]}

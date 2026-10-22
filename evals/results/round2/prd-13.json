@@ -1,0 +1,14 @@
+{"verdict": "Ready",
+ "blockers": [],
+ "improvements": [
+  "Requirements: state performance expectations for the picker with all 48 columns (e.g., opens in under X ms) and accessibility needs such as keyboard reordering.",
+  "Requirements: clarify what happens to new columns added to a report after a selection is saved (default on or off?).",
+  "Requirements: confirm permissions behavior, e.g., whether users who lack access to certain columns see them in the picker.",
+  "Risks: \"No open questions\" is unusual; confirm and note a fallback if the Nov 12 export service change from Wes slips.",
+  "Rollout: name an owner for monitoring the export error rate during the ramp, and note support/docs updates since users will see a new step before export."
+ ],
+ "questions": [
+  "Should newly added report columns be included or excluded in an existing saved selection?",
+  "Who owns monitoring the 0.2% error-rate rollback trigger during the 25% and GA stages?",
+  "Is the saved selection ever shared across a team, or strictly per user as stated?"
+ ]}

@@ -16,13 +16,19 @@ import sys
 
 # Each section: canonical name, heading aliases (lowercase), required?, minimum words.
 SECTIONS = [
-    ("Problem", ["problem", "problem statement", "background", "context", "why", "motivation"], True, 40),
-    ("Success metrics", ["success metrics", "metrics", "success criteria", "goals", "kpis", "measuring success"], True, 15),
-    ("Scope & non-goals", ["scope", "non-goals", "non goals", "out of scope", "in scope"], True, 15),
-    ("Requirements", ["requirements", "functional requirements", "user stories", "solution", "proposal", "features"], True, 60),
-    ("Risks & dependencies", ["risks", "dependencies", "open questions", "risks and dependencies", "assumptions"], True, 15),
-    ("Rollout", ["rollout", "launch", "launch plan", "release plan", "go-to-market", "gtm", "rollout plan"], True, 20),
-    ("Users", ["users", "target users", "personas", "audience", "who"], False, 15),
+    ("Problem", ["problem", "problem statement", "background", "context", "why", "motivation",
+                 "pain", "pain point", "opportunity", "the pain"], True, 40),
+    ("Success metrics", ["success metrics", "metrics", "success criteria", "goals", "kpis", "measuring success",
+                         "how we'll know", "how we will know", "measures of success", "outcomes"], True, 15),
+    ("Scope & non-goals", ["scope", "non-goals", "non goals", "out of scope", "in scope",
+                           "what we're building", "not building", "boundaries"], True, 15),
+    ("Requirements", ["requirements", "functional requirements", "user stories", "solution", "proposal", "features",
+                      "behavior", "behaviour", "specification", "spec", "acceptance criteria"], True, 60),
+    ("Risks & dependencies", ["risks", "dependencies", "open questions", "risks and dependencies", "assumptions",
+                              "watch-outs", "watch outs", "watchouts", "concerns", "unknowns"], True, 15),
+    ("Rollout", ["rollout", "launch", "launch plan", "release plan", "go-to-market", "gtm", "rollout plan",
+                 "shipping", "release", "ship it"], True, 20),
+    ("Users", ["users", "target users", "personas", "audience", "who", "who it's for", "customers"], False, 15),
     ("Timeline", ["timeline", "milestones", "schedule", "phases"], False, 10),
 ]
 
@@ -37,18 +43,18 @@ def normalize(title: str) -> str:
 
 
 def split_sections(text: str):
-    """Return a list of (heading, body) tuples from Markdown headings."""
-    sections, heading, body = [], None, []
+    """Return a list of (heading, body, level) tuples from Markdown headings."""
+    sections, heading, level, body = [], None, 0, []
     for line in text.splitlines():
         m = HEADING_RE.match(line)
         if m:
             if heading is not None:
-                sections.append((heading, "\n".join(body)))
-            heading, body = m.group(2), []
+                sections.append((heading, "\n".join(body), level))
+            heading, level, body = m.group(2), len(m.group(1)), []
         else:
             body.append(line)
     if heading is not None:
-        sections.append((heading, "\n".join(body)))
+        sections.append((heading, "\n".join(body), level))
     return sections
 
 
@@ -68,9 +74,11 @@ def word_count(s: str) -> int:
 
 
 def check(text: str):
-    found = {}
-    for heading, body in split_sections(text):
+    found, unrecognized = {}, []
+    for heading, body, level in split_sections(text):
         name = match_section(heading)
+        if not name and level > 1:  # level-1 heading is the document title
+            unrecognized.append(heading.strip())
         if name:
             entry = found.setdefault(name, {"headings": [], "words": 0, "body": ""})
             entry["headings"].append(heading.strip())
@@ -108,6 +116,7 @@ def check(text: str):
         "total_words": word_count(text),
         "sections": results,
         "issues": issues,
+        "unrecognized_headings": unrecognized,
         "passed": not issues,
     }
 
@@ -119,6 +128,10 @@ def print_report(report):
         tag = "required" if r["required"] else "optional"
         found = f" <- {', '.join(r['headings'])}" if r["headings"] else ""
         print(f"[{icons[r['status']]}] {r['section']:<22} {tag:<9} {r['words']:>4} words{found}")
+    if report["unrecognized_headings"]:
+        print("\nUnrecognized headings (check these before calling a section missing):")
+        for h in report["unrecognized_headings"]:
+            print(f"  - {h}")
     print()
     if report["issues"]:
         print("Issues:")

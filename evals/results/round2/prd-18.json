@@ -1,0 +1,18 @@
+{
+  "verdict": "Ready",
+  "blockers": [],
+  "improvements": [
+    "Formatting: the section headings (\"The pain\", \"How we'll know it worked\", \"Detailed behavior\", \"Watch-outs\", \"Shipping it\") are nonstandard, so the section checker reports every required section as missing even though the content is complete; renaming to Problem, Success metrics, Scope, Requirements, Risks and Rollout will help readers and tooling.",
+    "Requirements: specify code format and entropy (length, character set) and whether the user's session is re-verified before regenerating codes, pending Nadia's security review.",
+    "Edge cases: \"After 5 failed recovery-code attempts the account locks for 30 minutes\" could let an attacker lock out a user; clarify whether it locks the whole account or only recovery-code entry, and whether the user is notified.",
+    "Edge cases: cover what happens if 2FA is disabled and re-enabled (old codes invalidated?) and admin-forced 2FA resets.",
+    "Requirements: B4 email alert should state what it contains and how the user reports an unauthorized use.",
+    "Risks: the existing-2FA-user open question (Chris, Nov 8) is critical given the January 15 mandate; add a fallback if the security review (Nov 15) slips.",
+    "Rollout: add a rollback trigger (e.g., spike in failed setups or takeover alerts) and a post-launch monitoring owner."
+  ],
+  "questions": [
+    "Will existing 2FA users, especially admins before January 15, be prompted or required to generate codes?",
+    "Does the 5-failure lockout apply to the whole account or just recovery-code entry?",
+    "What is the fallback for a user who has lost both their phone and their recovery codes?"
+  ]
+}

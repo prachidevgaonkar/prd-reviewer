@@ -1,0 +1,36 @@
+{
+  "verdict": "Needs work",
+  "blockers": [
+    {
+      "title": "Problem describes a solution, with no evidence",
+      "why": "\"Users need a visual automation builder\" and \"Competitors have drag-and-drop workflow builders\" name a solution and a competitor gap, not a user pain backed by data, tickets or research; \"leadership has prioritized it\" is not a why-now. Without a real problem, eng can't make tradeoffs or know what to optimize.",
+      "fix": "Restate the problem as a specific user pain (e.g., what ops managers can't automate today with if-this-then-that rules) and add evidence such as support tickets, lost deals or usage data; explain what waiting costs."
+    },
+    {
+      "title": "Success metrics are outputs, not outcomes",
+      "why": "\"Builder shipped to GA\" and \"Number of node types available: 25\" measure delivery, so success can't be judged against any user or business outcome, and there is no guardrail.",
+      "fix": "Pick one outcome metric tied to the problem (e.g., share of accounts with active multi-step automations, or churn/deals lost to automation gaps) with a real baseline, target and timeframe, plus a guardrail such as run failure rate or existing-rule reliability."
+    },
+    {
+      "title": "Migration of existing rules and key requirements are undefined",
+      "why": "\"Migration of existing simple rules\" is still an open question, yet it determines whether the builder replaces or coexists with today's rules; requirements also omit permissions (who can edit/run workflows), execution limits and performance, so eng could build the wrong data model.",
+      "fix": "Decide coexistence vs. migration before eng kickoff and add requirements for permissions, workflow size/execution limits and canvas performance, each with acceptance criteria."
+    }
+  ],
+  "improvements": [
+    "Users: expand \"Operations managers and admins\" to say how they configure automations today and what roles differ in permissions.",
+    "Scope: separate v1 from later phases explicitly; 25 node types is a large v1, so say which are P0.",
+    "Requirements: R1 acceptance \"Connections persist after save\" doesn't cover the drag/connect interaction; add criteria for invalid connections, undo, and accessibility (keyboard use of the canvas).",
+    "Requirements: R3 \"Test run output matches a real run\" needs a rule for side-effecting actions (are emails/webhooks actually sent in test mode?).",
+    "Edge cases: say what happens to in-flight runs when a workflow is edited or a version is restored, and whether failure emails are rate-limited.",
+    "Risks: add a mitigation or fallback if the execution engine branching dependency (Ravi, Dec 1) slips.",
+    "Rollout: add a rollback trigger (what metric or error rate causes disabling the flag), a monitoring owner, and enablement (docs, support, sales) since users will notice this change.",
+    "Add a timeline with milestones, given the end-of-Q1 commitment."
+  ],
+  "questions": [
+    "What evidence do we have that customers need this (tickets, churn reasons, lost deals, usage of current rules)?",
+    "What user or business outcome should move if the builder succeeds, and what is its current value?",
+    "Will existing if-this-then-that rules be migrated into the builder, run alongside it, or be deprecated?",
+    "Who is allowed to create, edit and run workflows, and are there per-plan limits?"
+  ]
+}

@@ -1,0 +1,16 @@
+{"verdict": "Ready",
+ "blockers": [],
+ "improvements": [
+  "Risks: \"Third-party SDK screens (payments) may not support dark mode\" has an owner and date but no mitigation; state the fallback (e.g. payments renders in light mode) and whether that is acceptable for GA.",
+  "Requirements: state the default theme for existing and new users (likely \"Match system\") so engineering doesn't have to guess.",
+  "Requirements: add a non-functional note on theme-switch behavior, e.g. whether switching applies instantly without restart and how the app reacts when the OS theme changes mid-session.",
+  "Success metrics: \"Evening session length\" is a loose link to the problem; consider adding a direct adoption metric such as the share of users on Dark or Match system.",
+  "Users: the section is thin; note any platform or OS-version limits for \"Match system\" support.",
+  "Rollout: name an owner for monitoring crash-free sessions during the ramp, and consider adding a support/help-center update to enablement.",
+  "Timeline: add target dates for the beta and GA so the Nov 20 and Dec 1 dependency dates can be checked against them."
+ ],
+ "questions": [
+  "If the payments SDK can't support dark mode by Nov 20, does that block GA or ship as a known light-mode exception?",
+  "What is the default theme for existing users after the update?",
+  "What are the minimum iOS and Android versions where \"Match system\" must work?"
+ ]}

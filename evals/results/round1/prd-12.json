@@ -1,0 +1,16 @@
+{"verdict": "Ready",
+ "blockers": [],
+ "improvements": [
+  "Risks: add a security/privacy review, since amount, merchant and receipt links are sent into Slack and approvals happen from Slack; say whether the receipt link requires login.",
+  "Requirements: state how the Slack user who clicks Approve is verified as the authorized approver in the app, and what happens if the mapping fails.",
+  "Requirements: cover expenses that need multiple approvers or exceed the manager's approval limit, and what the buttons show if the request was rejected or edited after the DM was sent.",
+  "Requirements: R1 acceptance is measured \"in staging\"; add a production delivery target and monitoring.",
+  "Risks: answer \"Should reject require a reason?\" (Omar, Nov 5) before R3 is built, since it changes the Reject flow.",
+  "Success metrics: confirm how mute rate will be measured, and consider a guardrail on approval accuracy (e.g. reversed approvals).",
+  "Add a timeline with milestones and a monitoring owner after launch."
+ ],
+ "questions": [
+  "Does the daily email digest continue for managers who receive Slack DMs?",
+  "If a manager's own manager is also gone or not on Slack, where does the request route?",
+  "Should reject require a reason, and if so, is it entered in a Slack modal?"
+ ]}

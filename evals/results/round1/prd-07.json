@@ -1,0 +1,19 @@
+{"verdict": "Needs work",
+ "blockers": [
+  {"title": "Rollout section is missing", "why": "The checker reports no Rollout section, so there is no launch sequence, feature flag, rollback trigger or support enablement for a change that sends emails to billing owners.", "fix": "Add a Rollout section per the template: internal -> beta -> % ramp -> GA, a named flag, a rollback trigger (e.g. wrong or duplicate alert emails), and billing-support enablement."},
+  {"title": "Requirements cover only the happy path and R2 conflicts with a known risk", "why": "\"Email sent within 1 hour of crossing\" cannot be met when \"Usage data is delayed up to 6 hours for some meters\", and there are no edge cases (threshold already crossed when set, monthly reset, duplicate alerts, no billing owner or multiple owners, email bounce, permissions).", "fix": "Define the SLA relative to when usage data lands, add an edge-case/error-state list, and tighten R1's acceptance criteria beyond \"Thresholds saved per account\" (validation, limits, who can edit)."},
+  {"title": "No guardrail metric", "why": "Both metrics measure upside only, so nothing tells you if alerts become noisy or inaccurate (e.g. unsubscribes, alert emails disputed as wrong).", "fix": "Add at least one guardrail with a baseline and threshold, such as alert-email unsubscribe/complaint rate or alert accuracy vs the billing dashboard."}
+ ],
+ "improvements": [
+  "Users: \"Billing owners on usage-based plans\" is thin; say whether other roles (admins, finance) should receive alerts.",
+  "Scope: separate v1 from later phases explicitly; good non-goals already listed.",
+  "Requirements: add non-functional needs (email localization/currency formatting, accessibility of the threshold settings UI).",
+  "Risks: the 6-hour delay risk needs a mitigation or fallback, not just an owner and date.",
+  "Add a Timeline section with milestones."
+ ],
+ "questions": [
+  "Should the 1-hour alert SLA be measured from the usage event or from when the meter data is ingested?",
+  "Who receives alerts if an account has no billing owner or several?",
+  "Does an alert fire once per threshold per billing month, and what happens if a threshold is set below current month-to-date usage?",
+  "What is the answer to \"Should we pre-set a default alert for new accounts?\", since it affects the 50% adoption target?"
+ ]}

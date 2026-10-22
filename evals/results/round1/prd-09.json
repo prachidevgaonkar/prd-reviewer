@@ -1,0 +1,17 @@
+{"verdict": "Not ready",
+ "blockers": [
+  {"title": "This is an early-stage idea, not a PRD, and has no defined Problem", "why": "The doc mixes two problems (\"newer users struggle to get started\" and a possible \"growth channel\") with no evidence, so any solution would fit.", "fix": "Pick one primary user and pain, and back it with evidence such as onboarding drop-off data, support tickets or research quotes, plus a why-now."},
+  {"title": "No success metrics", "why": "Without a primary metric, baseline, target and timeframe, there is no way to decide whether the idea is worth exploring or later judge success.", "fix": "Define one primary outcome metric tied to the chosen problem (e.g. new-user activation or acquisition from shared templates) with its current baseline, a target, a timeframe and a guardrail."},
+  {"title": "Unclear what is being proposed for next quarter", "why": "Ideas like \"later let creators charge\", \"feature the best templates on the home page\" and \"Might need some kind of moderation\" are open-ended, so the ask is ambiguous.", "fix": "State the specific decision you want (e.g. approve discovery work) and frame the bullets as hypotheses to validate rather than scope."}
+ ],
+ "improvements": [
+  "Reviewed only against Problem and Success metrics, per the early-idea rule; Scope, Requirements, Risks and Rollout can come once the problem is validated.",
+  "Use the PRD template headings so the next draft can be checked for completeness.",
+  "Note moderation, public indexing and payments as likely risks (trust/safety, privacy, legal) to investigate."
+ ],
+ "questions": [
+  "Which problem matters most: new-user onboarding or acquisition growth?",
+  "What evidence do you have that newer users struggle to get started (activation data, tickets, research)?",
+  "How many power users build reusable setups today, and do they already share them informally?",
+  "What outcome would make this worth building after an exploration quarter?"
+ ]}

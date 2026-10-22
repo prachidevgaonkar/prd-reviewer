@@ -1,0 +1,25 @@
+{"verdict": "Needs work",
+ "blockers": [
+  {"title": "Open questions have no owners or due dates, and one blocks the build",
+   "why": "\"Which model provider do we use?\" decides latency, cost and whether R1's \"p95 under 10 minutes\" can be met at all, so engineering can't start architecture work while it's open.",
+   "fix": "Turn the open-questions list into a table with an owner and a due date for each, and resolve the model provider before eng kickoff (or name the default and the fallback)."},
+  {"title": "No privacy, legal or security review for customer call content",
+   "why": "The feature processes recorded external customer conversations, but \"Do we store summaries forever?\" and \"Should external participants receive the summary?\" are open, and sending transcripts to a model provider isn't covered; these answers change data storage, retention and sharing behavior.",
+   "fix": "Add a dependency on privacy/legal review with an owner and date, and state the v1 retention policy, data-processing terms for the model provider, and who may receive summaries."}
+ ],
+ "improvements": [
+  "Success metrics: the primary metric is \"Recordings with a summary opened within 7 days\" but the baseline is \"6% opened\" (any recording opened); confirm the baseline measures the same thing, or define how summary opens will be tracked.",
+  "Success metrics: the guardrail baseline is \"n/a, new\"; consider adding a second guardrail tied to accuracy or edits (e.g. share of summaries heavily edited) or to call-page performance.",
+  "Requirements: R3 \"Edits saved and versioned\" doesn't say who can see or revert versions; specify permissions (host only? teammates?).",
+  "Requirements: cover failure states, e.g. what the user sees if generation fails or exceeds 10 minutes, and whether it retries.",
+  "Requirements: state whether calls between 2 and 5 minutes get a partial summary, since R2 only guarantees sections \"for calls over 5 minutes\".",
+  "Rollout: \"10 design-partner accounts, then all paid plans\" has no percentage ramp; add an intermediate step and an owner for monitoring after launch.",
+  "Rollout: account for support docs and sales enablement, since this is a competitive feature sales will want to pitch."
+ ],
+ "questions": [
+  "Who owns the model-provider decision, and by when will it be made?",
+  "What retention period is acceptable for summaries, and does it match the retention of the underlying recordings?",
+  "Should external participants ever receive the summary in v1, or is that explicitly a non-goal?",
+  "Do users need consent or notice that call content is processed by an AI/third-party provider?",
+  "Which languages must be supported at launch for \"summarized in the call's language\"?"
+ ]}

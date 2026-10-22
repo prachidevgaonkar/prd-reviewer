@@ -168,13 +168,9 @@
     "blockers": {}
   },
   "h5-baseline-tbd": {
-    "expected": "Needs work",
-    "blockers": {
-      "a primary metric has no baseline or target yet": [
-        "baseline",
-        "tbd"
-      ]
-    }
+    "expected": "Ready",
+    "blockers": {},
+    "note": "Originally labeled Needs work. Corrected after review: the primary metric has a baseline and target; only a secondary metric is TBD, which the standards allow."
   },
   "h6-location-privacy": {
     "expected": "Needs work",
@@ -187,5 +183,10 @@
         "location data"
       ]
     }
+  },
+  "h7-heldout-headings": {
+    "expected": "Ready",
+    "blockers": {},
+    "note": "Held-out copy of h3 with headings the checker has never seen. Used to test that checker fixes generalize."
   }
 }

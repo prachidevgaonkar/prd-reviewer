@@ -1,0 +1,28 @@
+{"verdict": "Not ready",
+ "blockers": [
+  {"title": "Requirements section is missing",
+   "why": "There are no testable requirements, only a \"Proposed idea\" saying it \"should combine usage, support tickets and NPS\" and \"We can use machine learning to make it smarter over time\", so engineering can't know how the score is calculated, refreshed, or displayed.",
+   "fix": "Add a prioritized requirements table with acceptance criteria covering the scoring inputs and weights (or the method to define them), refresh frequency, account page and dashboard behavior, missing-data cases (e.g. no NPS), and permissions."},
+  {"title": "Success metrics are not measurable",
+   "why": "\"CSMs are happier with their tools\" and \"Fewer accounts churn\" have no baseline, target or timeframe, so success can't be judged.",
+   "fix": "Pick one primary metric (e.g. gross churn rate or share of churned accounts flagged at-risk beforehand) with its current baseline, a target and a timeframe, plus a guardrail metric."},
+  {"title": "Problem has no evidence and is framed as a solution",
+   "why": "\"CSMs are frustrated\" and \"A health score would help everyone\" are opinion and solution, with no data, quotes or cost of churn and no why-now, so the team can't confirm a health score is the right fix.",
+   "fix": "Name the specific user and pain, add evidence (churn data, how many churned accounts were missed, CSM interview quotes, time spent assembling account data), and explain why now."}
+ ],
+ "improvements": [
+  "Scope: add an explicit in-scope list for v1 and separate the ML-based scoring (\"make it smarter over time\") into a later phase.",
+  "Scope: the only non-goal is \"Automated outreach to at-risk accounts\"; add others a reader might expect, e.g. alerts or CRM sync.",
+  "Risks & dependencies: add this section, naming data owners for usage, support tickets and NPS, with owners and dates for open questions.",
+  "Risks & dependencies: note privacy review, since the score combines customer data and will be shown to sales.",
+  "Rollout: \"Ship to the CS team first, then make it visible to sales\" needs a feature flag, ramp criteria, a rollback plan with a trigger, and CS/sales enablement.",
+  "Add a Users section that distinguishes CSM needs from sales needs."
+ ],
+ "questions": [
+  "What evidence shows CSMs can't identify at-risk accounts today (churn data, missed accounts, interview findings)?",
+  "What is the current churn rate, and what target would make this a success?",
+  "How should usage, support tickets and NPS be weighted in v1, and who decides?",
+  "What should the score show for accounts with missing data, such as no NPS responses?",
+  "What should CSMs and sales do differently when they see a low score?",
+  "Is this an early-stage idea rather than a PRD ready for eng? If so, should it first be scoped against Problem and Success metrics only?"
+ ]}

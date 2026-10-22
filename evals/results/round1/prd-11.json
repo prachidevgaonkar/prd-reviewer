@@ -1,0 +1,20 @@
+{"verdict": "Not ready",
+ "blockers": [
+  {"title": "Success metrics section is missing", "why": "There is no primary metric, baseline, target or guardrail, so nobody can tell whether Team Spaces solved the clutter problem or whether the rollout should proceed.", "fix": "Add a metrics table, e.g. a primary metric tied to the \"140 projects but works in 6\" problem with its current baseline and a target and timeframe, plus a guardrail such as project discovery or cross-team collaboration not dropping."},
+  {"title": "Visibility and permission behavior is undefined", "why": "Non-goals exclude \"separate permissions models\", but the PRD never says whether non-members can still see or access a space's projects, or who can move projects (R2 has no actor), so engineering could build the wrong access model.", "fix": "State explicitly that spaces are organizational only (or not), and define who can create spaces, move projects, and what non-members see, with acceptance criteria."},
+  {"title": "Unresolved dependencies affect the core UX", "why": "The sidebar redesign (Joy, Nov 6) shapes R3 and \"Search scoping to spaces\" (Ben, Nov 13) is unanswered, so key behaviors aren't specified yet.", "fix": "Resolve both before handoff, or state a v1 default (e.g. search stays workspace-wide) and move the rest to a later phase."}
+ ],
+ "improvements": [
+  "Requirements: add error and edge cases such as a project in multiple spaces, removing a member who owns projects, a team lead leaving, and limits on spaces or members.",
+  "Requirements: R1 says \"Admins\" but scope says membership is managed by \"workspace admins and team leads\"; clarify how team leads are assigned.",
+  "Requirements: add non-functional needs (sidebar performance with many spaces, accessibility).",
+  "Scope: add a later-phases list and clarify whether the feature is limited to workspaces over 50 members at GA.",
+  "Rollout: add a rollback trigger, a monitoring owner, and enablement (admin docs, support, sales for enterprise accounts).",
+  "Add a timeline with milestones."
+ ],
+ "questions": [
+  "What metric will define success, and what is its current baseline?",
+  "Can a project belong to more than one space?",
+  "Do spaces restrict access to projects or only change what appears in the sidebar?",
+  "Who can move projects into a space: admins, team leads, or project owners?"
+ ]}

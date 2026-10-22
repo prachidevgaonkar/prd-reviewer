@@ -1,0 +1,26 @@
+{"verdict": "Not ready",
+ "blockers": [
+  {"title": "Requirements section is missing",
+   "why": "There are no testable requirements, priorities, edge cases or error states, so engineering can't know what \"Viewing and editing assigned work orders offline, with sync when the connection returns\" must actually do.",
+   "fix": "Add a prioritized requirements table with acceptance criteria covering what data is cached and when, which fields are editable offline, offline/sync status indicators, sync retry and failure handling, attachments/photos, storage limits, and behavior on logout or reassignment."},
+  {"title": "Conflict resolution is undecided but core to the design",
+   "why": "\"Conflict resolution approach when two people edit the same order\" is open until Nov 14, yet it determines the data model, sync protocol and the guardrail \"Under 1% of synced edits\"; building before it's settled risks rework.",
+   "fix": "Decide the approach (e.g. last-write-wins per field, server wins with user review, or manual merge) and write the user-facing behavior into requirements before eng starts, or scope a spike with that explicit deliverable."},
+  {"title": "Rollback could cause the data loss this feature is meant to prevent",
+   "why": "\"Disable the flag; the app reverts to online-only behavior\" does not say what happens to edits queued offline on devices when the flag is turned off.",
+   "fix": "State that pending local edits are synced (or preserved until sync) before offline mode is disabled, and define a rollback trigger (e.g. conflict rate or sync failure threshold) with an owner."}
+ ],
+ "improvements": [
+  "Success metrics: define how \"sync conflict rate\" is measured and add a guardrail for sync failures or data loss events.",
+  "Risks: \"Local storage limits on older Android devices\" needs a mitigation, such as a cap on cached orders or minimum supported OS versions.",
+  "Risks: add security/privacy review for customer data stored on devices (encryption at rest, remote wipe on lost devices).",
+  "Rollout: add support and docs enablement for field-services customers and a monitoring owner after launch.",
+  "Users: specify supported iOS/Android versions and whether technicians share devices.",
+  "Add a timeline section, given both QBR customers renew in Q1."
+ ],
+ "questions": [
+  "How many work orders and how much data (including photos/attachments) does a typical technician need offline, and for how long?",
+  "Which work order fields and actions (status changes, signatures, photos, time entries) must work offline in v1?",
+  "What should a technician see if an order is reassigned or deleted on the server while they edit it offline?",
+  "Has security or legal reviewed storing customer data locally on technician devices?"
+ ]}

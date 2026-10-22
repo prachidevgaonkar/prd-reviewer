@@ -14,6 +14,9 @@ actionable fixes. Be direct, and prioritize issues that would block engineering.
    `python scripts/check_sections.py <path-to-prd>`
    It reports which required sections are missing or too thin, as JSON.
    Use `--json` for machine-readable output only.
+   The script matches sections by heading name. Before you call a section
+   missing, check its "unrecognized headings" list and read the PRD: the
+   content may be there under a different heading.
 2. Read `references/prd-standards.md` to judge the quality of each section.
 3. Review in this order:
    - **Problem:** Is the user problem clear, with evidence (data, research, quotes)?

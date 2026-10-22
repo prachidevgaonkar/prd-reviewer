@@ -1,0 +1,16 @@
+{"verdict": "Ready",
+ "blockers": [],
+ "improvements": [
+  "Users: \"Billing admins and finance owners\" vs R3 \"Non-admin members cannot see the download control\"; state whether finance owners count as admins.",
+  "Requirements: specify bulk ZIP behavior for large ranges (sync vs async/emailed link, max invoices or file size, timeout behavior) and a performance target for R2, not only R1.",
+  "Requirements: add non-functional notes such as PDF accessibility (tagged PDF) and locale/date formatting.",
+  "Edge cases: cover empty date ranges (no invoices) and partial failures within a bulk ZIP.",
+  "Scope: list later-phase items explicitly so v1 boundaries are clear.",
+  "Rollout: name an owner for post-launch monitoring and define the audit sample used for the rollback trigger.",
+  "Add a Timeline section, especially given renewal checklists \"come due in February\"."
+ ],
+ "questions": [
+  "If the answer to \"Do EU invoices need a VAT-specific layout?\" is yes, is that in v1 or a fast follow, given the Nov 8 due date?",
+  "Do finance owners who are not billing admins get access to downloads?",
+  "What is the expected maximum invoice count in a 24-month bulk download, and is Platform's capacity sized for it?"
+ ]}
